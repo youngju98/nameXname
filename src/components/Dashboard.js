@@ -15,12 +15,14 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
-//Icon
+// Icon
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems } from './listItems';
-//color 
 import yellow from '@material-ui/core/colors/yellow';
+import MainListItems from './listItems';
+// color
+// component
+import NamePage from './NamePage';
 
 function Copyright() {
   return (
@@ -28,7 +30,8 @@ function Copyright() {
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/HanYoungJu/nameXname">
         SPARCS-break
-      </Link>{' '}
+      </Link>
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -37,7 +40,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
@@ -86,7 +89,7 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     background: '#FDFBE8',
-    color: 'black'
+    color: 'black',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -121,16 +124,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Dashboard() {
+  const [nameData, setNameData] = React.useState(['김김김', '김김김']);
+  const [myName, setMyName] = React.useState('스팍스');
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  const firstPaper = {
+    height: '10px',
+    paddingTop: 100,
+    margin: '1000px',
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -164,26 +173,23 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>
+          <MainListItems handle={setNameData} />
+        </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.appBarSpacer} />    {/* Top space with AppBar  */}
+        <div className={classes.appBarSpacer} />
+        {/* Top space with AppBar  */}
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             {/* paper 1 */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                  <div>paper 1</div>
+            <Grid item xs={12} lg={12}>
+              <Paper className={firstPaper}>
+                <NamePage nameData={nameData} myName={myName} />
               </Paper>
             </Grid>
             {/* paper 2 */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <div>paper 2</div>
-              </Paper>
-            </Grid>
-            {/* paper 3 */}
-            <Grid item xs={12}>
+            <Grid item xs={12} lg={12}>
               <Paper className={classes.paper}>
                 <div>paper 3</div>
               </Paper>

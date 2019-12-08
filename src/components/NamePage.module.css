@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Cute+Font&display=swap");
+.root textarea {
+  overflow: hidden;
+  resize: none;
+  background: transparent;
+  border: 1px solid var(--hr);
+  color: var(--text-normal);
+  margin-bottom: 1.75rem;
+  font-family: Monospace
+}
+
+.chars {
+  display: flex;
+  justify-content: center;
+  font-family: Monospace
+}
+.chars > li {
+  display: flex;
+  flex-grow: 0;
+}
+
+.stage {
+  display: flex;
+  justify-content: center;
+}
+.stage > li {
+  display: flex;
+  flex-grow: 0;
+}
+
+.showcase {
+  display: flex;
+}
+.showcase .calc {
+  flex-basis: 50%;
+  flex-grow: 1;
+  position: relative;
+}
+.showcase .calc h1 {
+  width: 100%;
+  text-align: center;
+  margin: 1.75rem 0 0;
+  font-size: 3.95285rem;
+  padding-top: 60px;
+}
+.showcase .calc h1 :global(.octicon-x) {
+  padding-left: 8px;
+  vertical-align: top;
+  padding-top: 30px;
+}
+.showcase .calc .formula {
+  font-family: Monospace;
+  margin: 2rem 6rem 3rem;
+  text-align: center;
+  border-radius: 0.3em;
+  border: 1px solid var(--hr);
+  padding: 0.75em;
+  background: var(--translation-bg);
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+.showcase .calc > div {
+  position: sticky;
+  top: 0;
+}
+.showcase .calc > div > div {
+  display: flex;
+}
+.showcase .calc > div > div > div {
+  flex: 1 0 0;
+}
+.showcase .rank {
+  flex-basis: 240px;
+  flex-grow: 100;
+  position: relative;
+  margin-right: 1.75rem;
+  margin-bottom: 1.75rem;
+  text-align: center;
+  padding: 0;
+  border: 1px solid var(--hr);
+  font-size: '30px';
+}
+.showcase .rank ul {
+  margin-top: 130px;
+}
+.showcase .rank ul li {
+  margin: 4px;
+  list-style: none;
+  display: flex;
+  text-align: center;
+  font-family: Monospace;
+  font-weight: bold;
+}
+.showcase .rank ul li .num {
+  padding: 0.25rem 0;
+  background: var(--bg);
+  color: var(--textNormal);
+  flex: 50px 0 0;
+}
+.showcase .rank ul li .name {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  background: var(--bg);
+  color: var(--textNormal);
+  white-space: nowrap;
+}
+
+@media (max-width: 672px) {
+  .showcase {
+    display: block;
+  }
+  .showcase .rank {
+    display: none;
+  }
+  .showcase .calc {
+    flex-basis: 100%;
+    flex-grow: 1;
+  }
+  .showcase .calc .formula {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .showcase .calc > div {
+    position: sticky;
+    top: 0;
+  }
+  .showcase .calc > div > div {
+    display: block;
+  }
+  .showcase .calc > div > div > div {
+    flex: 1 0 0;
+  }
+}
