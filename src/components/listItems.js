@@ -20,7 +20,9 @@ export default function MainListItems({ handle }) {
     '박희순', '송승헌', '송강호', '원빈', '장동건', '정우성', '조인성', '최민식', '하정우',
     '황정민', '김혜수', '문근영', '배두나', '손예진', '엄정화', '이영애', '전지현', '최지우',
     '하지원', '하희라', '한가인', '한예슬', '한지민', '한효주'];
-  const musicN = ['아이유', '장범준', '박혜원', '박진영'];
+  const musicN = ['아이유', '장범준', '박혜원', '박진영', '규현', '빈지노', '쌈디', '폴킴',
+    '태연', '창모', '성시경', '박효신', '지코', '아이린', '슬기', '웬디', '나연', '채영',
+    '모모', '다현', '송민호', '강승윤', '제니', '솔라', '화사', '하니', '시우민'];
   const customsN = ['홍길동', '김첨지'];
   const setData = handle;
 
@@ -48,7 +50,7 @@ export default function MainListItems({ handle }) {
         <ListItemIcon>
           <StarsIcon />
         </ListItemIcon>
-        <ListItemText primary="Stars" />
+        <ListItemText primary="Movie Stars" />
       </ListItem>
       <ListItem button onClick={handleMusics}>
         <ListItemIcon>

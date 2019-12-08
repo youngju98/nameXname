@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid, no-restricted-globals,
-react/no-array-index-key, react/jsx-props-no-spreading */
+react/no-array-index-key, react/jsx-props-no-spreading, no-bitwise */
 import React, {
   useMemo, useState, useEffect,
 } from 'react';
@@ -24,10 +24,16 @@ const compareScore = (a, b) => {
   return a.score < b.score ? 1 : -1;
 };
 
-function NamePage({ nameData, myName, onCasesChange }) {
-  const text = useMemo(() => shuffle(nameData)
-    .slice(0, 12)
-    .join(' '), [nameData, myName]);
+function NamePage({ nameData, myName }) {
+  const text = useMemo(() => {
+    let data = shuffle(nameData)
+      .slice(0, 12)
+      .join(' ');
+    if (data.indexOf(myName) < 0) {
+      data += ` ${myName}`;
+    }
+    return data;
+  }, [nameData, myName]);
 
   const cases = useMemo(() => {
     const all = text
@@ -50,7 +56,7 @@ function NamePage({ nameData, myName, onCasesChange }) {
           info2,
           score1: info1.score,
           score2: info2.score,
-          score: Math.round(Math.sqrt(info1.score * info2.score)),
+          score: ~~((info1.score + info2.score) / 2),
         });
       }
     }
@@ -59,9 +65,7 @@ function NamePage({ nameData, myName, onCasesChange }) {
   }, [text]);
 
   const [selected, setSelected] = useState(null);
-
   const [query, setQuery] = useState('');
-
 
   useEffect(() => {
     if (cases && cases.length > 0) {
@@ -70,9 +74,6 @@ function NamePage({ nameData, myName, onCasesChange }) {
       setSelected(null);
     }
     setQuery('');
-    if (typeof onCasesChange === 'function') {
-      onCasesChange(cases);
-    }
   }, [cases]);
 
   const filtered = useMemo(() => {
@@ -90,18 +91,13 @@ function NamePage({ nameData, myName, onCasesChange }) {
   };
 
   const getColors = (value) => {
-    try {
-      const background = interpolateRdYlBu(1 - value / 100);
-      const hsl1 = hsl(background);
-      return {
-        borderLeft: `10px solid ${background}`,
-        background,
-        color: hsl1.l < 0.7 ? '#fff' : '#000',
-      };
-    } catch (err) {
-      /* ignore */
-    }
-    return {};
+    const background = interpolateRdYlBu(1 - value / 100);
+    const hsl1 = hsl(background);
+    return {
+      borderLeft: `10px solid ${background}`,
+      background,
+      color: hsl1.l < 0.7 ? '#fff' : '#000',
+    };
   };
 
   const BASE = '가'.charCodeAt(0);
@@ -141,7 +137,6 @@ function NamePage({ nameData, myName, onCasesChange }) {
           </div>
         )}
         <div className={styles.calc}>
-          {/* {JSON.stringify(selected)} */}
           {selected && (
             <div>
               <div>
@@ -155,15 +150,15 @@ function NamePage({ nameData, myName, onCasesChange }) {
               </div>
               <div>
                 <div className={styles.formula}>
-                  &radic; (
+                  (
                   {' '}
                   {selected.score1}
                   {' '}
-*
++
                   {' '}
                   {selected.score2}
                   {' '}
-) =
+) / 2 =
                   {' '}
                   {selected.score}
                 </div>

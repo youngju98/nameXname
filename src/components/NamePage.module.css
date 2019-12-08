@@ -41,12 +41,14 @@
   text-align: center;
   margin: 1.75rem 0 0;
   font-size: 3.95285rem;
+  font-weight: bold;
   padding-top: 60px;
 }
 .showcase .calc h1 :global(.octicon-x) {
   padding-left: 8px;
   vertical-align: top;
   padding-top: 30px;
+  font-weight: bold;
 }
 .showcase .calc .formula {
   font-family: Monospace;
@@ -56,7 +58,6 @@
   border: 1px solid var(--hr);
   padding: 0.75em;
   background: var(--translation-bg);
-  font-weight: bold;
   letter-spacing: 4px;
 }
 .showcase .calc > div {
@@ -75,19 +76,15 @@
   position: relative;
   margin-right: 1.75rem;
   margin-bottom: 1.75rem;
-  text-align: center;
-  padding: 0;
   border: 1px solid var(--hr);
-  font-size: '30px';
+  font-size: 1.4em;
 }
 .showcase .rank ul {
   margin-top: 130px;
 }
 .showcase .rank ul li {
-  margin: 4px;
   list-style: none;
   display: flex;
-  text-align: center;
   font-family: Monospace;
   font-weight: bold;
 }
@@ -95,7 +92,8 @@
   padding: 0.25rem 0;
   background: var(--bg);
   color: var(--textNormal);
-  flex: 50px 0 0;
+  flex: 50px 1 1;
+  margin-left: 5;
 }
 .showcase .rank ul li .name {
   display: flex;
@@ -104,9 +102,10 @@
   background: var(--bg);
   color: var(--textNormal);
   white-space: nowrap;
+  text-align: center;
 }
 
-@media (max-width: 672px) {
+@media (max-width: 1100px) {
   .showcase {
     display: block;
   }

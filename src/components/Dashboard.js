@@ -9,12 +9,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
+import TextField from '@material-ui/core/TextField';
 // Icon
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -80,6 +80,12 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  myName: {
+    height: 40,
+    width: 100,
+    color: 'black',
+    textAlign: 'center',
+  },
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -124,8 +130,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
-  const [nameData, setNameData] = React.useState(['김김김', '김김김']);
   const [myName, setMyName] = React.useState('스팍스');
+  const [nameData, setNameData] = React.useState([myName, myName]);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -135,6 +141,10 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleMyName = (event) => {
+    setMyName(event.target.value);
+  };
+
   const firstPaper = {
     height: '10px',
     paddingTop: 100,
@@ -157,7 +167,14 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Name X Name
           </Typography>
-          <Button color="inherit">My Name : </Button>
+          <TextField
+            id="myName"
+            className={classes.myName}
+            label="My Name"
+            value={myName}
+            variant="outlined"
+            onChange={handleMyName}
+          />
         </Toolbar>
       </AppBar>
       <Drawer
