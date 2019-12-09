@@ -192,7 +192,7 @@ export default function Dashboard() {
         </div>
         <Divider />
         <List>
-          <MainListItems handle={setNameData} />
+          <MainListItems handle={setNameData} myName={myName} />
         </List>
       </Drawer>
       <main className={classes.content}>
@@ -209,7 +209,7 @@ export default function Dashboard() {
             {/* paper 2 */}
             <Grid item xs={12} lg={12}>
               <Paper className={classes.paper}>
-                <CustomInput />
+                <CustomInput myName={myName} />
               </Paper>
             </Grid>
           </Grid>

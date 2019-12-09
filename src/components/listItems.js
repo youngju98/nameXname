@@ -8,8 +8,9 @@ import StarsIcon from '@material-ui/icons/Stars';
 import MusicIcon from '@material-ui/icons/MusicVideo';
 import CustomIcon from '@material-ui/icons/AccountCircle';
 // import RankIcon from '@material-ui/icons/Equalizer';
+import axios from 'axios';
 
-export default function MainListItems({ handle }) {
+export default function MainListItems({ handle, myName }) {
   const sparcsN = ['한영주', '강현우', '국윤범', '권해찬', '김경모', '김규성',
     '김나영', '김도현', '김상호', '김승호', '김재성', '김주연', '김지연', '김태원', '나선일',
     '황동욱', '류찬영', '마재의', '문재호', '박근용', '박준우', '박진호', '박현우', '방형조',
@@ -23,7 +24,7 @@ export default function MainListItems({ handle }) {
   const musicN = ['아이유', '장범준', '박혜원', '박진영', '규현', '빈지노', '쌈디', '폴킴',
     '태연', '창모', '성시경', '박효신', '지코', '아이린', '슬기', '웬디', '나연', '채영',
     '모모', '다현', '송민호', '강승윤', '제니', '솔라', '화사', '하니', '시우민'];
-  const customsN = ['홍길동', '김첨지'];
+  // const customsN = [];
   const setData = handle;
 
   const handleSparcs = () => {
@@ -36,7 +37,21 @@ export default function MainListItems({ handle }) {
     setData(musicN);
   };
   const handleCustoms = () => {
-    setData(customsN);
+    axios({
+      url: 'http://localhost:8000/api/list',
+      method: 'POST',
+      data: {
+        id: myName,
+        name: [],
+      },
+    }).then((e) => {
+      console.log(e.data);
+      setData(e.data);
+    })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
   };
   return (
     <div>
