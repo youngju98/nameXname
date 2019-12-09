@@ -23,6 +23,7 @@ import MainListItems from './listItems';
 // color
 // component
 import NamePage from './NamePage';
+import CustomInput from './CustomInput';
 
 function Copyright() {
   return (
@@ -127,6 +128,11 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  firstPaper: {
+    height: '10px',
+    paddingTop: 100,
+    margin: '1000px',
+  },
 }));
 
 export default function Dashboard() {
@@ -145,11 +151,6 @@ export default function Dashboard() {
     setMyName(event.target.value);
   };
 
-  const firstPaper = {
-    height: '10px',
-    paddingTop: 100,
-    margin: '1000px',
-  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -201,14 +202,14 @@ export default function Dashboard() {
           <Grid container spacing={2}>
             {/* paper 1 */}
             <Grid item xs={12} lg={12}>
-              <Paper className={firstPaper}>
+              <Paper>
                 <NamePage nameData={nameData} myName={myName} />
               </Paper>
             </Grid>
             {/* paper 2 */}
             <Grid item xs={12} lg={12}>
               <Paper className={classes.paper}>
-                <div>paper 3</div>
+                <CustomInput />
               </Paper>
             </Grid>
           </Grid>
